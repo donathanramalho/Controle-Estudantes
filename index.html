@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 5.2.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Controle de estudantes</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <span class="logo"><b class="controle">CONTROLE</b> de Estudantes</span>
+            <div>
+                <b>Cadastrar:</b>
+                <a class="cadastro" href="#">Alunos</a>
+                <b>|</b>
+                <a class="cadastro" href="#">Sala</a>
+              </div>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <form class="sala">
+
+            <label for="sala">Salas de Aula:</label>
+
+            <select id="sala" name="nome">
+                <option value="">Selecione uma sala</option>
+                <option value=""> Sala1 </option>
+                <option value=""> Sala2 </option>
+            </select>
+            
+        </form>
+
+
+        <h2>Alunos</h2>
+
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="img/usuario.png" class="card-img-top" alt="Foto aluno">
+                    <div class="card-body">
+                        <h5 class="card-title">Nome do Estudante</h5>
+                        <p class="card-text">Idade</p>
+                        <form>
+                            <button type="submit" class="btn btn-secondary aluno_editar">Editar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
