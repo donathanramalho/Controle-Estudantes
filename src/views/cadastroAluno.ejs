@@ -31,7 +31,7 @@
         <div class="edit-box">
             <h2>Cadastrar um novo aluno</h2>
 
-            <form>
+            <form action="/cadastroAluno" method="post">
 
                 <div class="max-width">
                     <div class="image-container">
@@ -58,8 +58,9 @@
                 <div class="user-box">
                     <label for="sala">Sala</label>
                     <select id="sala" name="sala" required>
-                        <option value=""> Sala1 </option>
-                        <option value=""> Sala2 </option>
+                        <% for (let i=0; i<salas.length; i++) { %>
+                            <option value='<%= salas[i].IDSala %>' > <%= salas[i].Nome %> </option>
+                        <% } %>
                     </select>
                 </div>
 

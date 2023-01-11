@@ -33,35 +33,43 @@
 
     <main>
 
-        <form class="sala">
+        <form class="sala" action="/" method="post">
 
             <label for="sala">Salas de Aula:</label>
 
-            <select id="sala" name="nome">
-                <option value="">Selecione uma sala</option>
-                <option value=""> Sala1 </option>
-                <option value=""> Sala2 </option>
+            <select id="sala" onchange="this.form.submit()" name="nome">
+                <option value="" id="selecione">Selecione uma sala</option>
+                <% for (let i=0; i<salas.length; i++) { %>
+                    <option value='<%= salas[i].IDSala %>' <%= id == salas[i].IDSala ? 'selected' : ''%>> <%= salas[i].Nome %> </option>
+                  <% } %>
             </select>
             
+
+
         </form>
 
 
         <h2>Alunos</h2>
 
-
         <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            <% for(let i=0; i<alunos.length; i++) { %>
+
             <div class="col">
                 <div class="card h-100">
-                    <img src="img/usuario.png" class="card-img-top" alt="Foto aluno">
+                    <img src="img/<%= alunos[i].Foto %>" class="card-img-top" alt="Foto aluno">
                     <div class="card-body">
-                        <h5 class="card-title">Nome do Estudante</h5>
-                        <p class="card-text">Idade</p>
+                        <h5 class="card-title"><%= alunos[i].Nome %></h5>
+                        <p class="card-text"><%= alunos[i].Idade %></p>
                         <form>
                             <button type="submit" class="btn btn-secondary aluno_editar">Editar</button>
                         </form>
                     </div>
                 </div>
             </div>
+
+            <% } %>
+
         </div>
 
     </main>
