@@ -44,6 +44,11 @@ module.exports = {
         // Nome padrão da foto
         let foto = 'usuario.png';
 
+        // Verificando se foi enviada alguma foto
+        if (req.file) {
+            foto = req.file.filename;
+        }
+
         // Criando aluno no banco de dados
         await aluno.create({
             Nome: dados.nome,
