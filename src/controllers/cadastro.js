@@ -2,6 +2,7 @@
 // Importando as tabelas do DB
 const sala = require('../model/sala');
 const aluno = require('../model/aluno');
+const { Sequelize } = require('sequelize');
 
 module.exports = {
     async sala(req, res){
@@ -32,8 +33,29 @@ module.exports = {
             attributes: ['IDSala', 'Nome']
         });
 
+        // Quantidade de alunos em cada sala
+        const quantAlunos = await aluno.findAll({
+            raw: true,
+            group: ['IDSala'],
+            attributes: ['IDSala', [Sequelize.fn('count', Sequelize.col('IDSala')), 'Quant'] ]
+        });
+
+        // Ajustando a capacidade de novos alunos em cada sala
+        let listaSalas = [];
+        for (let i=0; i<salas.length; i++ ) {
+            for (let j=0; j<quantAlunos.length; j++ ){
+                if (salas[i].IDSala == quantAlunos[j].IDSala) {
+                    salas[i].Capacidade -= quantAlunos[j].Quant;
+                }
+            }
+            if (salas[i].Capacidade != 0){
+                listaSalas.push(salas[i]);
+            }
+        }
+
         // Renderizando e passando o nome das salas para o front
-        res.render('../views/cadastroAluno', {salas});
+        res.render('../views/cadastroAluno', {listaSalas});
+
     },
 
     async alunoInsert(req, res){

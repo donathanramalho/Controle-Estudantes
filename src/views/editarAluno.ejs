@@ -61,8 +61,8 @@
                 <div class="user-box">
                     <label>Sala</label>
                     <select id="sala" name="sala">
-                    <% for (let i=0; i<salas.length; i++) { %>
-                        <option value='<%= salas[i].IDSala %>' <%= alunos.IDSala == salas[i].IDSala ? 'selected' : ''%>> <%= salas[i].Nome %> </option>
+                    <% for (let i=0; i<listaSalas.length; i++) { %>
+                        <option value='<%= listaSalas[i].IDSala %>' <%= alunos.IDSala == listaSalas[i].IDSala ? 'selected' : ''%>> <%= listaSalas[i].Nome %> </option>
                     <% } %>
                     </select>
                 </div>

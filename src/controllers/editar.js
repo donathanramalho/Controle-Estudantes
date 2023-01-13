@@ -9,7 +9,6 @@ const fs = require('fs');
 
 
 module.exports = {
-    
     async aluno(req, res){
  
         // Recebendo o id da URL
@@ -26,7 +25,27 @@ module.exports = {
             attributes: ['IDSala', 'Nome', 'Capacidade']
         });
 
-        res.render('../views/editarAluno', {salas, alunos});
+        // Quantidade de alunos em cada sala
+        const quantAlunos = await aluno.findAll({
+            raw: true,
+            group: ['IDSala'],
+            attributes: ['IDSala', [Sequelize.fn('count', Sequelize.col('IDSala')), 'Quant'] ]
+        });
+
+        // Ajustando a capacidade de novos alunos em cada sala
+        let listaSalas = [];
+        for (let i=0; i<salas.length; i++ ) {
+            for (let j=0; j<quantAlunos.length; j++ ){
+                if (salas[i].IDSala == quantAlunos[j].IDSala) {
+                    salas[i].Capacidade -= quantAlunos[j].Quant;
+                }
+            }
+            if (salas[i].Capacidade!=0 || salas[i].IDSala==alunos.IDSala){
+                listaSalas.push(salas[i]);
+            }
+        }
+     
+        res.render('../views/editarAluno', {listaSalas, alunos});
      
     },
 

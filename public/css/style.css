@@ -54,3 +54,8 @@ h2 {
     width: 80px;
 }
 
+.vagas {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
