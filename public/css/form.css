@@ -40,3 +40,9 @@ label {
     border: 0;
 }
 
+#excluir {
+    font-weight: bold;
+    margin-top: 2em;
+    float: right;
+    width: 30%;
+}

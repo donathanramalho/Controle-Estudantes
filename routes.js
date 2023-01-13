@@ -10,6 +10,8 @@ const config = require('./src/config/multer');
 // Importando os Controllers
 const home = require('./src/controllers/home');
 const cadastro = require('./src/controllers/cadastro');
+const editar = require('./src/controllers/editar');
+
 
 // Iniciando as rotas
 route.get('/', home.pagInicialGet);
@@ -20,5 +22,12 @@ route.post('/cadastroSala', cadastro.salaInsert);
 
 route.get('/cadastroAluno', cadastro.aluno);
 route.post('/cadastroAluno', multer(config).single('foto'), cadastro.alunoInsert);
+
+route.get('/editarAluno/:id', editar.aluno);
+route.post('/editarAluno/:id', multer(config).single('foto'), editar.alunoUpdate);
+
+route.get('/editarSala/:id', editar.sala);
+route.post('/editarSala/:id', editar.salaUpdate);
+
 
 module.exports = route;

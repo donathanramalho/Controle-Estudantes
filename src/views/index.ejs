@@ -37,6 +37,7 @@
 
             <label for="sala">Salas de Aula:</label>
 
+            <!-- Selecionando salas -->
             <select id="sala" onchange="this.form.submit()" name="nome">
                 <option value="" id="selecione">Selecione uma sala</option>
                 <% for (let i=0; i<salas.length; i++) { %>
@@ -44,6 +45,10 @@
                   <% } %>
             </select>
             
+            <!-- Botão de editar salas quando alguma estiver selecionada -->
+            <% if (id != "") { %>
+                <a class="btn btn-secondary" href="/editarSala/<%= id %>">Editar</a>
+            <% } %>
 
 
         </form>
@@ -51,25 +56,22 @@
 
         <h2>Alunos</h2>
 
+        <!-- Área dos cards de cada aluno -->
         <div class="row row-cols-1 row-cols-md-3 g-4">
-
             <% for(let i=0; i<alunos.length; i++) { %>
-
             <div class="col">
                 <div class="card h-100">
                     <img src="img/<%= alunos[i].Foto %>" class="card-img-top" alt="Foto aluno">
                     <div class="card-body">
                         <h5 class="card-title"><%= alunos[i].Nome %></h5>
                         <p class="card-text"><%= alunos[i].Idade %></p>
-                        <form>
+                        <form action="/editarAluno/<%= alunos[i].IDAluno %>" method="get">
                             <button type="submit" class="btn btn-secondary aluno_editar">Editar</button>
                         </form>
                     </div>
                 </div>
             </div>
-
             <% } %>
-
         </div>
 
     </main>
